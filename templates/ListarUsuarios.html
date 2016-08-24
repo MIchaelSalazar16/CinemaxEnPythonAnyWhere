@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Listar Usuarios</title>
+  <link rel="stylesheet" href="/static/css/bootstrap.css">
+</head>
+<body>
+<div class="well">
+  <a href="/Cinemax">
+    <button type="button" class="btn btn-success" aria-label="Left Align">
+    <span class="glyphicon glyphicon-arrow-left" ></span>ADMINISTRACION
+    </button>
+  </a>
+  <br>
+  <br>
+  <a href="/Cinemax/crearU">
+    <button type="button" class="btn btn-success" aria-label="Left Align">
+    <span class="glyphicon glyphicon-plus" ></span>AGREGAR
+    </button>
+  </a>
+  <br>
+  <br>
+  <table class ="table table-striped">
+      <tr>
+        <td>Username</td>
+        <td>Nombres</td>
+        <td>Apellidos</td>
+        <td>Clave</td>
+      </tr>
+      {%for u in usuario %}
+      <tr>
+        <td><a href="/Cinemax/modificarU?username={{u.username}}">{{u.username}}</a></td>
+        <td>{{u.nombres}}</td>
+        <td>{{u.apellidos}}</td>
+        <td>{{u.clave}}</td>
+      </tr>
+      {%endfor%}
+  </table>
+</div>
+
+</body>
+</html>
