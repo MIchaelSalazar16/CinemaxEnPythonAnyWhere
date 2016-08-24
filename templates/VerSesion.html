@@ -8,19 +8,10 @@
   <link rel="stylesheet" href="/static/css/bootstrap.css">
 </head>
 <body>
-<div class="well">
-  <a href="/Cinemax">
-    <button type="button" class="btn btn-success" aria-label="Left Align">
-    <span class="glyphicon glyphicon-arrow-left" ></span>ADMINISTRACION
-    </button>
-  </a>
-  <br>
-  <br>
-  <a href="/Cinemax/ingresarSe">
-    <button type="button" class="btn btn-success" aria-label="Left Align">
-    <span class="glyphicon glyphicon-plus" ></span>AGREGAR
-    </button>
-  </a>
+  {% extends "master.html" %}
+  {% block contenido %}
+
+
   <br>
   <br>
   <table class ="table table-striped">
@@ -45,11 +36,17 @@
               <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
             </button>
           </a>
+          |
+          <a href="/Cinemax/ingresarSe">
+            <button type="button" class="btn btn-info" aria-label="Left Align">
+            <span class="glyphicon glyphicon-plus" ></span>
+            </button>
+          </a>
         </td>
       </tr>
       {%endfor%}
   </table>
-</div>
+{% endblock %}
 
 </body>
 </html>

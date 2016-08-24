@@ -1,23 +1,12 @@
 from django.contrib import admin
-from .models import Usuario
 from .models import Pelicula
 from .models import Sala
 from .models import SalaSesion
 from .models import Sesion
 # Register your models here.
-class AdminUsuario(admin.ModelAdmin):
-	list_display=["__str__","nombres","apellidos","clave"]
-	list_editable=["nombres","apellidos","clave"]
-	list_filter=["clave"]
-	search_fields=["__str__","nombres","apellidos"]
-
-	class Meta:
-		model= Usuario
-
-admin.site.register(Usuario,AdminUsuario)
 
 class AdminPelicula(admin.ModelAdmin):
-	list_display=["__str__","titulo","genero","clasificacion","director","interpretes","sinopsis","imagenPortada","nacionalidad","anio","duracion"]
+	list_display=["idPelicula","titulo","genero","clasificacion","director","interpretes","sinopsis","imagenPortada","nacionalidad","anio","duracion"]
 	list_editable=["titulo","genero","clasificacion","director","interpretes","sinopsis","imagenPortada","nacionalidad","anio","duracion"]
 	list_filter=["titulo","genero"]
 	search_fields=["titulo","genero"]

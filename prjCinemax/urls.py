@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-from appCinemax.views import ListarUsuario
+
 
 urlpatterns = [
     url(r'^Cinemax/admin/', admin.site.urls),

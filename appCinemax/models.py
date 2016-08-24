@@ -1,15 +1,6 @@
 from django.db import models
 from django import forms
 # Create your models here.
-class Usuario(models.Model):
-    username= models.CharField(max_length=30)
-    nombres= models.CharField(max_length=30)
-    apellidos= models.CharField(max_length=30)
-    clave= models.CharField(max_length=20)
-
-    def __str__(self):
-        return self.username
-
 class Pelicula(models.Model):
     listaGenero=(
     ('Comedia','Comedia'),
@@ -25,7 +16,8 @@ class Pelicula(models.Model):
     ('C','C'),
     ('E','E'),
     )
-    idPelicula= models.CharField(max_length=10)
+    idPelicula= models.AutoField(primary_key=True)
+    #idPelicula= models.CharField(max_length=5)
     titulo=  models.CharField(max_length=100)
     genero=  models.CharField(max_length=20,choices=listaGenero)
     clasificacion=  models.CharField(max_length=30,choices=listaClasificacion)
@@ -34,10 +26,10 @@ class Pelicula(models.Model):
     sinopsis=  models.TextField()
     imagenPortada=  models.ImageField(upload_to='static/images')
     nacionalidad=  models.CharField(max_length=20)
-    anio=  models.DateField()
-    duracion= models.IntegerField()
+    anio=  models.CharField(max_length=30)
+    duracion= models.CharField(max_length=30)
     def __str__(self):
-        return self.idPelicula
+        return self.titulo
 
 class Sala(models.Model):
     listaTipoSala=(

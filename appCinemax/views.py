@@ -1,6 +1,6 @@
 from django.shortcuts import redirect,render
-from .models import Usuario,Sala,Pelicula,Sesion,SalaSesion
-from .forms import FormularioUsuario,FormularioPelicula,FormularioSala,FormularioSesion,FormularioSalaSesion
+from .models import Sala,Pelicula,Sesion,SalaSesion
+from .forms import FormularioPelicula,FormularioSala,FormularioSesion,FormularioSalaSesion
 from django.core.files.uploadedfile import SimpleUploadedFile
 import json as simplejson
 from django.http import HttpResponse,HttpResponseRedirect
@@ -14,49 +14,12 @@ def inicioAdmin(request):
     }
     return render(request,"InicioAdmin.html",context)
 
-def ListarUsuario(request):
-    usuario= Usuario.objects.all()
+def InfoPelicula(request):
+    p=Pelicula.objects.get(idPelicula=request.GET['idPelicula'])
     context={
-    'usuario':usuario,
+    'p':p,
     }
-    return render(request,"ListarUsuarios.html",context)
-
-def CrearUsuario(request):
-    f = FormularioUsuario(request.POST or None)
-    if request.method == 'POST':
-        if f.is_valid():
-            datos= f.cleaned_data
-            u=Usuario()
-            u.username=datos.get("username")
-            u.nombres=datos.get("nombres")
-            u.apellidos=datos.get("apellidos")
-            u.clave=datos.get("clave")
-            if u.save() != True:
-                return redirect(ListarUsuario)
-    contexto={'f':f,}
-    return render(request,"CrearUsuarios.html",contexto)
-
-def ModificarUsuario(request):
-    f = FormularioUsuario(request.POST or None)
-    u = Usuario.objects.get(username=request.GET['username'])
-    f.fields['username'].initial= u.username
-    f.fields['nombres'].initial=u.nombres
-    f.fields['apellidos'].initial=u.apellidos
-    f.fields['clave'].initial= u.clave
-    if request.method == 'POST':
-        if f.is_valid():
-            datos= f.cleaned_data
-            u.username=datos.get("username")
-            u.nombres=datos.get("nombres")
-            u.apellidos=datos.get("apellidos")
-            u.clave=datos.get("clave")
-            if u.save() != True:
-                return redirect(ListarUsuario)
-    context={
-        'f':f,
-        'u':u,
-    }
-    return render(request,"ModificarUsuarios.html",context)
+    return render(request,"InfoPelicula.html",context)
 
 def ListarPelicula(request):
     peli= Pelicula.objects.all()
@@ -71,7 +34,6 @@ def IngresarPelicula(request):
         if f.is_valid():
             datos= f.cleaned_data
             p=Pelicula()
-            p.idPelicula=datos.get("idPelicula")
             p.titulo=datos.get("titulo")
             p.genero=datos.get("genero")
             p.clasificacion=datos.get("clasificacion")
@@ -90,7 +52,6 @@ def IngresarPelicula(request):
 def ModificarPelicula(request):
     f = FormularioPelicula(request.POST or None,request.FILES or None)
     p = Pelicula.objects.get(idPelicula=request.GET['idPelicula'])
-    f.fields["idPelicula"].initial=p.idPelicula
     f.fields["titulo"].initial=p.titulo
     f.fields["genero"].initial=p.genero
     f.fields["clasificacion"].initial=p.clasificacion
@@ -104,7 +65,6 @@ def ModificarPelicula(request):
     if request.method == 'POST':
         if f.is_valid():
             datos= f.cleaned_data
-            p.idPelicula=datos.get("idPelicula")
             p.titulo=datos.get("titulo")
             p.genero=datos.get("genero")
             p.clasificacion=datos.get("clasificacion")

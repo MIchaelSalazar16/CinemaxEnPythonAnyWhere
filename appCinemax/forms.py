@@ -1,14 +1,6 @@
 from django import forms
-from .models import Usuario
 from .models import Pelicula,Sala,Sesion,SalaSesion
 #from django.forms import ModelForm, ClearableFileInput
-
-class FormularioUsuario(forms.ModelForm):
-    clave=forms.CharField(widget=forms.PasswordInput)
-    class Meta:
-        model= Usuario
-        fields= ["username","nombres","apellidos","clave"]
-
 class FormularioPelicula(forms.ModelForm):
     #nombreImagen  = forms.CharField(max_length=100)
     class Meta:
