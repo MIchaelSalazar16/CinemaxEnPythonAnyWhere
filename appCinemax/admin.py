@@ -6,8 +6,8 @@ from .models import Sesion
 # Register your models here.
 
 class AdminPelicula(admin.ModelAdmin):
-	list_display=["idPelicula","titulo","genero","clasificacion","director","interpretes","sinopsis","imagenPortada","nacionalidad","anio","duracion"]
-	list_editable=["titulo","genero","clasificacion","director","interpretes","sinopsis","imagenPortada","nacionalidad","anio","duracion"]
+	list_display=["idPelicula","titulo","genero","clasificacion","director","interpretes","sinopsis","imagenPortada","anio","duracion"]
+	list_editable=["titulo","genero","clasificacion","director","interpretes","sinopsis","imagenPortada","anio","duracion"]
 	list_filter=["titulo","genero"]
 	search_fields=["titulo","genero"]
 

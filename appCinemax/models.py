@@ -25,7 +25,6 @@ class Pelicula(models.Model):
     interpretes=  models.CharField(max_length=100)
     sinopsis=  models.TextField()
     imagenPortada=  models.ImageField(upload_to='static/images')
-    nacionalidad=  models.CharField(max_length=20)
     anio=  models.CharField(max_length=30)
     duracion= models.CharField(max_length=30)
     def __str__(self):

@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.contrib import admin
-from appCinemax.views import inicioAdmin,InfoPelicula
+from appCinemax.views import inicioAdmin,InfoPelicula,SesionAsignada,SalaAsignada
 from appCinemax.views import ListarPelicula,ModificarPelicula,IngresarPelicula,VerSalas
 from appCinemax.views import IngresarSala,ModificarSala,VerSesion,IngresarSesion,ModificarSesion
 from appCinemax.views import VerSalaSesion,IngresarSalaSesion,ModificarSalaSesion,listPelicula
@@ -20,5 +20,7 @@ urlpatterns=[
 	url(r'^modificarSaSe/',ModificarSalaSesion,name="ModificarSalaSesion"),
 	url(r'^infoP/',InfoPelicula,name="InfoPelicula"),
 	url(r'^listPWS/',listPelicula,name="listPelicula"),
+	url(r'^sesAsig/',SesionAsignada,name="SesionAsignada"),
+	url(r'^salaAsig/',SalaAsignada,name="SalaAsignada"),
 
 ]

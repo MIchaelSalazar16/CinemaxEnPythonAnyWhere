@@ -41,7 +41,6 @@ def IngresarPelicula(request):
             p.interpretes=datos.get("interpretes")
             p.sinopsis=datos.get("sinopsis")
             p.imagenPortada=datos.get("imagenPortada")
-            p.nacionalidad=datos.get("nacionalidad")
             p.anio=datos.get("anio")
             p.duracion=datos.get("duracion")
             if p.save() != True:
@@ -59,7 +58,6 @@ def ModificarPelicula(request):
     f.fields["interpretes"].initial=p.interpretes
     f.fields["sinopsis"].initial=p.sinopsis
     f.fields["imagenPortada"].initial=p.imagenPortada
-    f.fields["nacionalidad"].initial=p.nacionalidad
     f.fields["anio"].initial=p.anio
     f.fields["duracion"].initial=p.duracion
     if request.method == 'POST':
@@ -72,7 +70,6 @@ def ModificarPelicula(request):
             p.interpretes=datos.get("interpretes")
             p.sinopsis=datos.get("sinopsis")
             p.imagenPortada=datos.get("imagenPortada")
-            p.nacionalidad=datos.get("nacionalidad")
             p.anio=datos.get("anio")
             p.duracion=datos.get("duracion")
             if p.save() != True:
@@ -218,15 +215,28 @@ def listPelicula(request):
     mresult = []
     mreturn = {}
     for m in peliculas:
-        mresult.append({"Titulo":m.titulo,
-                        "Genero":m.genero,
-                        "Clasificacion":m.clasificacion,
-                        "Director":m.director,
-                        "Interpretes":m.interpretes,
-                        "Sinopsis":m.sinopsis,
-                        #"Portada":m.imagenPortada,
-                        "Nacionalidad":m.nacionalidad,
-                        #"Anio":m.anio,
-                        "Duracion":m.duracion})
-    mreturn['Pelicula'] = mresult
+        mresult.append({"movie":m.titulo,
+                        "tagline":m.genero,
+                        "rating":m.clasificacion,
+                        "director":m.director,
+                        "cast":m.interpretes,
+                        "story":m.sinopsis,
+                        #"image":m.imagenPortada,
+                        "year":m.anio,
+                        "duration":m.duracion})
+    mreturn['movies'] = mresult
     return HttpResponse(simplejson.dumps(mreturn),'application/json')
+
+def SesionAsignada(request):
+    s=Sesion.objects.get(NumSesion=request.GET['NumSesion'])
+    context={
+    's':s,
+    }
+    return render(request,"SesionAsignada.html",context)
+
+def SalaAsignada(request):
+    s=Sala.objects.get(NumSala=request.GET['NumSala'])
+    context={
+    's':s,
+    }
+    return render(request,"SalaAsignada.html",context)

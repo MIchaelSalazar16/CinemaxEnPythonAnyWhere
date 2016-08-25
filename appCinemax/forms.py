@@ -6,7 +6,7 @@ class FormularioPelicula(forms.ModelForm):
     class Meta:
         model= Pelicula
         fields=["idPelicula","titulo","genero","clasificacion","director","interpretes",
-                "sinopsis","imagenPortada","nacionalidad","anio","duracion"]
+                "sinopsis","imagenPortada","anio","duracion"]
 
 class FormularioSala(forms.ModelForm):
     class Meta:
